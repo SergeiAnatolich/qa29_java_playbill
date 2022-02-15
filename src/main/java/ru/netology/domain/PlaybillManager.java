@@ -2,23 +2,32 @@ package ru.netology.domain;
 
 public class PlaybillManager {
 
-    private MoviesRepository repository;
+    private int maxMovies = 10;
 
-    public PlaybillManager(MoviesRepository repository) {
-        this.repository=repository;
+    private MovieRepository repository;
+
+    public PlaybillManager() {
     }
 
-    public void add(Movies movie) {
+    public PlaybillManager(int maxMovies) {
+        this.maxMovies = maxMovies;
+    }
+
+    public PlaybillManager(MovieRepository repository) {
+        this.repository = repository;
+    }
+
+    public void add(Movie movie) {
         repository.save(movie);
     }
 
-    public Movies[] getAll() {
+    public Movie[] getAll() {
         return repository.findAll();
     }
 
-    public Movies[] getMaxMoviesReverseOrder() {
-        Movies[] movies = repository.findAll();
-        Movies[] result = new Movies[10];
+    public Movie[] getMaxMoviesReverseOrder() {
+        Movie[] movies = repository.findAll();
+        Movie[] result = new Movie[10];
         int j = 0;
         for (int i = movies.length - 1; i > (movies.length - 11); i--) {
             result[j] = movies[i];
@@ -27,9 +36,9 @@ public class PlaybillManager {
         return result;
     }
 
-    public Movies[] getMaxMoviesReverseOrder(int maxMovies) {
-        Movies[] movies = repository.findAll();
-        Movies[] result = new Movies[maxMovies];
+    public Movie[] getMaxMoviesReverseOrder(int maxMovies) {
+        Movie[] movies = repository.findAll();
+        Movie[] result = new Movie[maxMovies];
         int j = 0;
         for (int i = movies.length - 1; i > (movies.length - 1 - maxMovies); i--) {
             result[j] = movies[i];
