@@ -27,19 +27,22 @@ public class MovieRepository {
     }
 
     public void removeById(int id) {
-        Movie[] tmp = new Movie[movie.length - 1];
-        int index = 0;
-        for (Movie movie : movie) {
-            if (movie.getId() != id) {
-                tmp[index] = movie;
-                index++;
+        Movie[] nullFilm = new Movie[1];
+        nullFilm[0] = null;
+        if (findById(id)[0] != nullFilm[0]) {
+            Movie[] tmp = new Movie[movie.length - 1];
+            int index = 0;
+            for (Movie movie : movie) {
+                if (movie.getId() != id) {
+                    tmp[index] = movie;
+                    index++;
+                }
             }
+            movie = tmp;
         }
-        movie = tmp;
     }
 
     public void removeAll() {
-        Movie[] tmp = new Movie[0];
-        movie = tmp;
+        movie = new Movie[0];
     }
 }

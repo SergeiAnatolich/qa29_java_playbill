@@ -2,12 +2,14 @@ package ru.netology.domain;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import static  org.mockito.Mockito.doReturn;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
-class PlaybillManagerTest {
+public class PlaybillManagerTest {
 
-    public MovieRepository repository = Mockito.mock(MovieRepository.class);
+    private MovieRepository repository = Mockito.mock(MovieRepository.class);
 
     private PlaybillManager manager = new PlaybillManager(repository);
 
@@ -23,17 +25,31 @@ class PlaybillManagerTest {
     private Movie movie10 = new Movie(10, "Падение луны", "Боевик");
     private Movie movie11 = new Movie(11, "Яйцо Фаберже", "Комедия");
 
-
-
     @Test
-    void add() {
+    public void shouldAdd() {
+        Movie[] returned = {movie1, movie2, movie3};
+        doReturn(returned).when(repository).findAll();
+
+        manager.add(movie1);
+        manager.add(movie2);
+        manager.add(movie3);
+
+        Movie[] expected = {movie1, movie2, movie3};
+        Movie[] actual = manager.getAll();
+
+        assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
     }
 
     @Test
-    void getMaxMoviesReverseOrder() {
-    }
+    public void shouldShowMaxMoviesReverseOrder() {
+        Movie[] returned = {movie1, movie2, movie3, movie4, movie5, movie6, movie7, movie8, movie9, movie10, movie11};
+        doReturn(returned).when(repository).findAll();
 
-    @Test
-    void testGetMaxMoviesReverseOrder() {
+        Movie[] expected = {movie11, movie10, movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2};
+        Movie[] actual = manager.showMaxMoviesReverseOrder();
+
+        assertArrayEquals(expected, actual);
     }
 }

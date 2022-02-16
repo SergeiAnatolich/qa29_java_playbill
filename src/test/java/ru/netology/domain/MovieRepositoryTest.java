@@ -48,7 +48,7 @@ class MovieRepositoryTest {
     public void shouldFindById() {
         Movie movie1 = new Movie(1, "Бладшот", "Боевик");
         Movie movie2 = new Movie(2, "Вперед", "Мультфильм");
-        Movie movie3 = new Movie(3, "Отель Белград", "Комедия");
+        Movie movie3 = new Movie(9, "Отель Белград", "Комедия");
         Movie movie4 = new Movie(4, "Джентельмены", "Боевик");
         Movie movie5 = new Movie(5, "Человек-неведимка", "Ужасы");
 
@@ -60,7 +60,7 @@ class MovieRepositoryTest {
         repo.save(movie5);
 
         Movie[] expected = {movie3};
-        Movie[] actual = repo.findById(3);
+        Movie[] actual = repo.findById(9);
 
         assertArrayEquals(expected, actual);
     }
@@ -83,7 +83,7 @@ class MovieRepositoryTest {
     @Test
     public void shouldRemoveById() {
         Movie movie1 = new Movie(1, "Бладшот", "Боевик");
-        Movie movie2 = new Movie(2, "Вперед", "Мультфильм");
+        Movie movie2 = new Movie(7, "Вперед", "Мультфильм");
         Movie movie3 = new Movie(3, "Отель Белград", "Комедия");
 
         MovieRepository repo = new MovieRepository();
@@ -91,7 +91,7 @@ class MovieRepositoryTest {
         repo.save(movie2);
         repo.save(movie3);
 
-        repo.removeById(2);
+        repo.removeById(7);
 
         Movie[] expected = {movie1, movie3};
         Movie[] actual = repo.findAll();
@@ -99,22 +99,22 @@ class MovieRepositoryTest {
         assertArrayEquals(expected, actual);
     }
 
-//    @Test
-//    public void shouldNotRemoveById() {
-//        Movie movie1 = new Movie(1, "Бладшот", "Боевик");
-//        Movie movie2 = new Movie(2, "Вперед", "Мультфильм");
-//
-//        MovieRepository repo = new MovieRepository();
-//        repo.save(movie1);
-//        repo.save(movie2);
-//
-//        repo.removeById(3);
-//
-//        Movie[] expected = {movie1, movie2};
-//        Movie[] actual = repo.findAll();
-//
-//        assertArrayEquals(expected, actual);
-//    }
+    @Test
+    public void shouldNotRemoveById() {
+        Movie movie1 = new Movie(1, "Бладшот", "Боевик");
+        Movie movie2 = new Movie(7, "Вперед", "Мультфильм");
+
+        MovieRepository repo = new MovieRepository();
+        repo.save(movie1);
+        repo.save(movie2);
+
+        repo.removeById(3);
+
+        Movie[] expected = {movie1, movie2};
+        Movie[] actual = repo.findAll();
+
+        assertArrayEquals(expected, actual);
+    }
 
     @Test
     public void shouldRemoveAll() {
