@@ -17,19 +17,17 @@ public class MovieRepository {
 
     public Movie[] findById(int id) {
         Movie[] findMovie = new Movie[1];
-        findMovie[0] = null;
         for (Movie movie : movie) {
             if (id == movie.getId()) {
                 findMovie[0] = movie;
+                return findMovie;
             }
         }
-        return findMovie;
+        return null;
     }
 
     public void removeById(int id) {
-        Movie[] nullFilm = new Movie[1];
-        nullFilm[0] = null;
-        if (findById(id)[0] != nullFilm[0]) {
+        if (findById(id) != null) {
             Movie[] tmp = new Movie[movie.length - 1];
             int index = 0;
             for (Movie movie : movie) {

@@ -74,7 +74,7 @@ class MovieRepositoryTest {
         repo.save(movie1);
         repo.save(movie2);
 
-        Movie[] expected = {null};
+        Movie[] expected = null;
         Movie[] actual = repo.findById(3);
 
         assertArrayEquals(expected, actual);
