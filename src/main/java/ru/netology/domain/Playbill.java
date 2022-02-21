@@ -4,7 +4,7 @@ public class Playbill {
 
     private int maxMovies = 10;
 
-    Movie[] movies = new Movie[0];
+    private Movie[] movies = new Movie[0];
 
     public Playbill() {
     }

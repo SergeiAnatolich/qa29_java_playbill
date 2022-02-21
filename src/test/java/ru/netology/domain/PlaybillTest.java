@@ -68,7 +68,7 @@ class PlaybillTest {
         assertArrayEquals(expected, actual);
     }
 
-        @Test
+    @Test
     public void shouldShowMaxMoviesReverseOrder() {
         Playbill playbill = new Playbill(5);
         playbill.add(movie1);
