@@ -88,4 +88,17 @@ class PlaybillTest {
 
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldShowMaxMoviesReverseOrderIfMoviesLess() {
+        Playbill playbill = new Playbill(15);
+        playbill.add(movie1);
+        playbill.add(movie2);
+        playbill.add(movie3);
+
+        Movie[] expected = {movie3, movie2, movie1};
+        Movie[] actual = playbill.showMaxMoviesReverseOrder();
+
+        assertArrayEquals(expected, actual);
+    }
 }

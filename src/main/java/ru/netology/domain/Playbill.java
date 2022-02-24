@@ -26,6 +26,10 @@ public class Playbill {
     }
 
     public Movie[] showMaxMoviesReverseOrder() {
+        int resultLength = movies.length;
+        if (maxMovies>resultLength) {
+            maxMovies = resultLength;
+        }
         Movie[] tmp = new Movie[maxMovies];
         int j = 0;
         for (int i = movies.length - 1; i > (movies.length - 1 - maxMovies); i--) {
